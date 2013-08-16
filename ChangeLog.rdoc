@@ -1,0 +1,7 @@
+=== 0.3.0 / 2013-08-14
+
+* Initial release:
+
+* Started with musicality-0.2.1 gem, removing uneeded files.
+
+* Moved instrument code into Music::Instruments namespace. 

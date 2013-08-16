@@ -1,0 +1,28 @@
+= music-instruments
+
+* {Homepage}[https://github.com/jamestunnell/music-instruments]
+* {Issues}[https://github.com/jamestunnell/music-instruments/issues]
+* {Documentation}[http://rubydoc.info/gems/music-instruments/frames]
+* {Email}[mailto:jamestunnell@gmail.com]
+
+== Description
+
+Base classes for creating  digital music instruments.
+
+== Features
+
+== Examples
+
+  require 'music-instruments'
+
+== Requirements
+
+== Install
+
+  $ gem install music-instruments
+
+== Copyright
+
+Copyright (c) 2012 James Tunnell
+
+See LICENSE.txt for details.

@@ -20,9 +20,13 @@ class Parameter
     @limit = limit
   end
 
+  def allows? value
+    @limit.allows? value
+  end
+
   # Set the parameter to the given value.
   def set_value value
-    if @limit.allows? value
+    if allows? value
       @set_value_handler.call value
     end
   end

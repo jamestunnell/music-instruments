@@ -38,20 +38,44 @@ describe Parameter do
       @param.get_value.should eq(@start + 2)
     end
 
-    it 'should use whatever limit is given to disallow certain values' do
-      set_handler_was_invoked = false
+    it 'should only set value if #allows? is true' do
       value = 7
-
-      p = Parameter.new(
+      param = Parameter.new(
         ->(){ return value },
-        ->(v){ set_handler_was_invoked = true; value = v },
+        ->(v){ value = v },
         EnumLimit.new([1,3,5,7])
       )
 
-      p.set_value(6)
-      set_handler_was_invoked.should be_false
-      p.set_value(5)
-      set_handler_was_invoked.should be_true
+      param.allows?(6).should be_false
+      param.set_value(6)
+      value.should eq(7)
+      param.allows?(5).should be_true
+      param.set_value(5)
+      value.should eq(5)
+    end
+  end
+
+  describe '#allows?' do
+    before :each do
+      @set_handler_was_invoked = false
+      @value2 = 7
+      @param2 = Parameter.new(
+        ->(){ return @value2 },
+        ->(v){ @set_handler_was_invoked = true; @value2 = v },
+        EnumLimit.new([1,3,5,7])
+      )
+    end
+
+    context 'allowed value given' do
+      it 'should return true' do
+        @param2.allows?(5).should be_true
+      end
+    end
+
+    context 'allowed value given' do
+      it 'should return true' do
+        @param2.allows?(6).should be_false
+      end
     end
   end
 end

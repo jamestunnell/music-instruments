@@ -1,5 +1,3 @@
-require 'spnet'
-
 module Music
 module Instruments
 
@@ -12,10 +10,10 @@ class Instrument
   ARG_SPECS = {
     :sample_rate => arg_spec(:reqd => true, :type => Fixnum, :validator => ->(a){ a > 0 }),
     :key_maker => arg_spec(:reqd => true, :type => Proc, :validator => ->(a){ a.arity == 0 }),
-    :params => arg_spec_hash(:reqd => false, :type => SPNet::ParamInPort),
+    :parameters => arg_spec_hash(:reqd => false, :type => Parameter),
   }
   
-  attr_reader :keys, :sample_rate, :params
+  attr_reader :keys, :sample_rate, :parameters
   
   def initialize args
     hash_make args, Instrument::ARG_SPECS
